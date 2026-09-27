@@ -1,0 +1,214 @@
+---
+Metadata:
+  AWSToolsMetrics:
+    IaC_Generator: "arn:aws:cloudformation:eu-central-1:361577816422:generatedTemplate/b11c9d93-2ed7-498d-a90a-6b8ce257ae4f"
+Resources:
+  EC2VPCGatewayAttachmentIGW:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPCGatewayAttachment"
+    DeletionPolicy: "Retain"
+    Properties:
+      InternetGatewayId: "igw-031656d862a1631a9"
+      VpcId: "vpc-0d20e16af1cc50162"
+  EC2RouteTableVg:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::RouteTable"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+  EC2SubnetNetworkAclAssociationT8:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::SubnetNetworkAclAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      NetworkAclId: "acl-09c4a7cf1df365d76"
+      SubnetId: "subnet-0db488b43ebe5d3e8"
+  EC2SubnetLd:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      MapPublicIpOnLaunch: false
+      EnableDns64: false
+      VpcId: "vpc-0d20e16af1cc50162"
+      AvailabilityZoneId: "euc1-az2"
+      PrivateDnsNameOptionsOnLaunch:
+        EnableResourceNameDnsARecord: false
+        HostnameType: "ip-name"
+        EnableResourceNameDnsAAAARecord: false
+      AvailabilityZone: "eu-central-1a"
+      CidrBlock: "10.0.1.0/26"
+      Ipv6Native: false
+      Tags:
+      - Value: "shyk-private"
+        Key: "Name"
+  EC2Subnet:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      MapPublicIpOnLaunch: false
+      EnableDns64: false
+      VpcId: "vpc-0d20e16af1cc50162"
+      AvailabilityZoneId: "euc1-az2"
+      PrivateDnsNameOptionsOnLaunch:
+        EnableResourceNameDnsARecord: false
+        HostnameType: "ip-name"
+        EnableResourceNameDnsAAAARecord: false
+      AvailabilityZone: "eu-central-1a"
+      CidrBlock: "10.0.0.16/28"
+      Ipv6Native: false
+      Tags:
+      - Value: "shyk-public"
+        Key: "Name"
+  EC2DHCPOptions:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::DHCPOptions"
+    DeletionPolicy: "Retain"
+    Properties:
+      DomainName: "eu-central-1.compute.internal"
+      DomainNameServers:
+      - "AmazonProvidedDNS"
+      Tags: []
+  EC2Route:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Route"
+    DeletionPolicy: "Retain"
+    Properties:
+      RouteTableId: "rtb-025e30f36be3b8463"
+      DestinationCidrBlock: "10.0.0.0/16"
+      GatewayId: "local"
+      VpcEndpointId: "local"
+  EC2SecurityGroup:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::SecurityGroup"
+    DeletionPolicy: "Retain"
+    Properties:
+      GroupDescription: "default VPC security group"
+      GroupName: "default"
+      VpcId: "vpc-0d20e16af1cc50162"
+      SecurityGroupIngress:
+      - SourceSecurityGroupId: "sg-0f6385d25431631e3"
+        IpProtocol: "-1"
+        SourceSecurityGroupOwnerId: "361577816422"
+      SecurityGroupEgress:
+      - CidrIp: "0.0.0.0/0"
+        IpProtocol: "-1"
+  EC2SubnetNetworkAclAssociation:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::SubnetNetworkAclAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      NetworkAclId: "acl-09c4a7cf1df365d76"
+      SubnetId: "subnet-00bcc0dcbd511feba"
+  EC2VPCCidrBlock:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPCCidrBlock"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      CidrBlock: "10.0.0.0/16"
+  EC2RouteTableCB:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::RouteTable"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      Tags:
+      - Value: "shyk-public"
+        Key: "Name"
+  EC2VPC:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPC"
+    DeletionPolicy: "Retain"
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      EnableDnsSupport: true
+      InstanceTenancy: "default"
+      EnableDnsHostnames: false
+      Tags:
+      - Value: "demo-vpc"
+        Key: "Name"
+  EC2VPCDHCPOptionsAssociation:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPCDHCPOptionsAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      DhcpOptionsId: "dopt-6d1be507"
+  EC2RouteTable:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::RouteTable"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      Tags:
+      - Value: "shyk-private-rt"
+        Key: "Name"
+  EC2InternetGateway:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::InternetGateway"
+    DeletionPolicy: "Retain"
+    Properties:
+      Tags:
+      - Value: "shyk-igw"
+        Key: "Name"
+  EC2RouteRe:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Route"
+    DeletionPolicy: "Retain"
+    Properties:
+      RouteTableId: "rtb-0e131aacb5f1cbb9d"
+      DestinationCidrBlock: "10.0.0.0/16"
+      GatewayId: "local"
+      VpcEndpointId: "local"
+  EC2SubnetRouteTableAssociation:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::SubnetRouteTableAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      RouteTableId: "rtb-09119468c0d77fe0c"
+      SubnetId: "subnet-00bcc0dcbd511feba"
+  EC2SubnetRouteTableAssociationYt:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::SubnetRouteTableAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      RouteTableId: "rtb-025e30f36be3b8463"
+      SubnetId: "subnet-0db488b43ebe5d3e8"
+  EC2RouteG8:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Route"
+    DeletionPolicy: "Retain"
+    Properties:
+      RouteTableId: "rtb-09119468c0d77fe0c"
+      DestinationCidrBlock: "10.0.0.0/16"
+      GatewayId: "local"
+      VpcEndpointId: "local"
+  EC2NetworkAcl:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::NetworkAcl"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      Tags: []
+  EC2RouteC0:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Route"
+    DeletionPolicy: "Retain"
+    Properties:
+      GatewayId: "igw-031656d862a1631a9"
+      RouteTableId: "rtb-09119468c0d77fe0c"
+      DestinationCidrBlock: "0.0.0.0/0"
+  EC2SubnetExtra:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId: "vpc-0d20e16af1cc50162"
+      AvailabilityZone: "eu-central-1a"
+      CidrBlock: "10.0.2.0/26"
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Value: "shyk-extra"
+        Key: "Name"
